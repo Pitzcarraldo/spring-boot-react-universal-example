@@ -7,9 +7,9 @@ import org.springframework.web.servlet.view.{AbstractTemplateViewResolver, Abstr
 /**
   * @author Minkyu Cho (https://github.com/Pitzcarraldo)
   */
-class NodeJSViewResolver extends AbstractTemplateViewResolver with ViewResolver with InitializingBean {
+class NodeViewResolver extends AbstractTemplateViewResolver with ViewResolver with InitializingBean {
   override protected def buildView(viewName: String): AbstractUrlBasedView = {
-    val view: NodeJSView = super.buildView(viewName).asInstanceOf[NodeJSView]
+    val view: NodeView = super.buildView(viewName).asInstanceOf[NodeView]
     try {
       view.setViewPath(getPrefix + viewName + getSuffix)
       view
@@ -20,6 +20,6 @@ class NodeJSViewResolver extends AbstractTemplateViewResolver with ViewResolver 
 
   override def afterPropertiesSet(): Unit = {}
 
-  override protected def requiredViewClass: Class[_] = classOf[NodeJSView]
+  override protected def requiredViewClass: Class[_] = classOf[NodeView]
 
 }

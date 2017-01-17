@@ -1,6 +1,6 @@
 package com.github.pitzcarraldo
 
-import com.github.pitzcarraldo.configuration.{NodeJSView, NodeJSViewResolver}
+import com.github.pitzcarraldo.configuration.{NodeView, NodeViewResolver}
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.{Bean, Configuration}
@@ -23,10 +23,10 @@ object SpringBootReactUniversalExampleApplication extends WebMvcConfigurerAdapte
 class MvcConfig extends WebMvcConfigurerAdapter {
   @Bean
   def getViewResolver: ViewResolver = {
-    val resolver = new NodeJSViewResolver
+    val resolver = new NodeViewResolver
     resolver.setPrefix("/WEB-INF/views/")
     resolver.setSuffix(".js")
-    resolver.setViewClass(classOf[NodeJSView])
+    resolver.setViewClass(classOf[NodeView])
     resolver
   }
 
