@@ -1,6 +1,6 @@
 package com.github.pitzcarraldo
 
-import com.github.pitzcarraldo.configuration.{NodeView, NodeViewResolver}
+import com.github.pitzcarraldo.spring.view.node.{NodeView, NodeViewResolver}
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.{Bean, Configuration}
@@ -27,6 +27,7 @@ class MvcConfig extends WebMvcConfigurerAdapter {
     resolver.setPrefix("/WEB-INF/views/")
     resolver.setSuffix(".js")
     resolver.setViewClass(classOf[NodeView])
+    resolver.setCache(false)
     resolver
   }
 

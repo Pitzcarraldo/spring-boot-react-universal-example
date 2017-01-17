@@ -1,14 +1,15 @@
 buildscript {
-	ext {
-		springBootVersion = '1.4.2.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
-		classpath 'com.google.gradle:osdetector-gradle-plugin:1.4.0'
-	}
+  ext {
+    springBootVersion = '1.4.2.RELEASE'
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+    classpath 'com.google.gradle:osdetector-gradle-plugin:1.4.0'
+    classpath "com.layer:gradle-git-repo-plugin:2.0.2"
+  }
 }
 
 apply plugin: 'scala'
@@ -16,29 +17,30 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'com.google.osdetector'
+apply plugin: 'git-repo'
 
 jar {
-	baseName = 'spring-boot-react-universal-example'
-	version = '0.0.1-SNAPSHOT'
+  baseName = 'spring-boot-react-universal-example'
+  version = '0.0.1-SNAPSHOT'
 }
+
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-	mavenCentral()
+  mavenCentral()
+  mavenLocal()
+  //git("https://bitbucket.org/Pitzcarraldo/maven.git", "pitzcarraldo", "master", "snapshots")
 }
 
-def os = [
-		'windows': 'win32',
-		'osx'    : 'macosx'
-]
-
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-web')
-	compile('org.scala-lang:scala-library:2.12.1')
-	compile('com.google.guava:guava:20.0')
-	compile("com.eclipsesource.j2v8:j2v8_${os[osdetector.os] ?: osdetector.os}_x86_64:4.6.0")
-	testCompile('org.springframework.boot:spring-boot-starter-test')
-	testCompile('org.easytesting:fest-assert-core:2.0M10')
-	runtime('org.springframework.boot:spring-boot-devtools')
+  compile('org.springframework.boot:spring-boot-starter-web')
+  compile('org.scala-lang:scala-library:2.12.1')
+  compile('com.google.guava:guava:20.0')
+  compile("com.github.pitzcarraldo:spring-node-view:0.1.${osdetector.os}-SNAPSHOT") {
+    changing = true
+  }
+  testCompile('org.springframework.boot:spring-boot-starter-test')
+  testCompile('org.easytesting:fest-assert-core:2.0M10')
+  runtime('org.springframework.boot:spring-boot-devtools')
 }
