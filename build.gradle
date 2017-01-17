@@ -29,7 +29,8 @@ targetCompatibility = 1.8
 
 repositories {
   mavenCentral()
-  mavenLocal()
+  github("Pitzcarraldo", "maven", "master", "snapshots")
+  //mavenLocal()
   //git("https://bitbucket.org/Pitzcarraldo/maven.git", "pitzcarraldo", "master", "snapshots")
 }
 
@@ -37,9 +38,7 @@ dependencies {
   compile('org.springframework.boot:spring-boot-starter-web')
   compile('org.scala-lang:scala-library:2.12.1')
   compile('com.google.guava:guava:20.0')
-  compile("com.github.pitzcarraldo:spring-node-view:0.1.${osdetector.os}-SNAPSHOT") {
-    changing = true
-  }
+  compile("com.github.pitzcarraldo:spring-node-view:0.1.${osdetector.os}-SNAPSHOT")
   testCompile('org.springframework.boot:spring-boot-starter-test')
   testCompile('org.easytesting:fest-assert-core:2.0M10')
   runtime('org.springframework.boot:spring-boot-devtools')
