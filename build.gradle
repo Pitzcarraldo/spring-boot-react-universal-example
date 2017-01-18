@@ -27,9 +27,8 @@ targetCompatibility = 1.8
 
 repositories {
   mavenCentral()
-  //mavenLocal()
   maven {
-    url "https://github.com/Pitzcarraldo/maven/raw/master/snapshots"
+    url "https://oss.sonatype.org/content/repositories/snapshots"
   }
 }
 
