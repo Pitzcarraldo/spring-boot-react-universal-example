@@ -8,7 +8,6 @@ buildscript {
   dependencies {
     classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
     classpath 'com.google.gradle:osdetector-gradle-plugin:1.4.0'
-    classpath "com.layer:gradle-git-repo-plugin:2.0.2"
   }
 }
 
@@ -17,7 +16,6 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'com.google.osdetector'
-apply plugin: 'git-repo'
 
 jar {
   baseName = 'spring-boot-react-universal-example'
@@ -29,9 +27,10 @@ targetCompatibility = 1.8
 
 repositories {
   mavenCentral()
-  github("Pitzcarraldo", "maven", "master", "snapshots")
   //mavenLocal()
-  //git("https://bitbucket.org/Pitzcarraldo/maven.git", "pitzcarraldo", "master", "snapshots")
+  maven {
+    url "https://github.com/Pitzcarraldo/maven/raw/master/snapshots"
+  }
 }
 
 dependencies {
